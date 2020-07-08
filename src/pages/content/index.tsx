@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
-import { Pokemon, ShoppingItem, ShoppingCart } from './styles';
+import {
+  Pokemon, ShoppingItem, ShoppingCart, Chose,
+} from './styles';
 
 interface Types {
   type: {
@@ -102,9 +104,9 @@ const Content: React.FC = () => {
                       ))}
                     </div>
                     <p>{formatValue(pokemon.base_experience)}</p>
-                    <button type="button" onClick={() => handleAddPokemonToCart(pokemon.name)}>
+                    <Chose type="button" onClick={() => handleAddPokemonToCart(pokemon.name)}>
                       I chose you!
-                    </button>
+                    </Chose>
                   </Pokemon>
                 </div>
               ))}

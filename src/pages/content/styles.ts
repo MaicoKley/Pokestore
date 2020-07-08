@@ -59,3 +59,26 @@ export const ShoppingItem = styled.div`
     height: 40px;
   }
 `;
+
+export const Chose = styled.button`
+  position: relative;
+  width: 180px;
+  background: #53a3c6;
+  border-radius: .4em;
+  margin-bottom: 20px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border: 20px solid transparent;
+    border-bottom-color: #53a3c6;
+    border-top: 0;
+    border-left: 0;
+    margin-left: -10px;
+    margin-top: -20px;
+  }
+`;
