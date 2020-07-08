@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import api from '../../services/api';
 
 import {
-  Pokemon, ShoppingItem, ShoppingCart, Chose,
+  Pokemon, ShoppingItem, ShoppingCart, Chose, Modal,
 } from './styles';
 
 interface Types {
@@ -36,6 +36,7 @@ const Content: React.FC = () => {
   const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const [shoppingCart, setShoppingCart] = useState<CartItem[]>([]);
   const [total, setTotal] = useState(0);
+  const [show, setShow] = useState(false);
 
   async function handleAddPokemonToList(endpoint: string) {
     const { data } = await api.get(endpoint);
@@ -63,6 +64,12 @@ const Content: React.FC = () => {
     }
   }
 
+  function handleClearCart() {
+    setShoppingCart([]);
+    setTotal(0);
+    setShow(false);
+  }
+
   useEffect(() => {
     api.get('?limit=9').then((response) => {
       response.data.results.map((result: Result) => (
@@ -83,6 +90,12 @@ const Content: React.FC = () => {
 
   return (
     <>
+      <Modal visible={show}>
+        <p>Obrigado por fazer suas compras na Pokestore!</p>
+        <button type="button" onClick={() => handleClearCart()}>
+          Concluir
+        </button>
+      </Modal>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
@@ -124,6 +137,9 @@ const Content: React.FC = () => {
               ))}
             </ShoppingCart>
             <h3>{`Total: ${formatValue(total)}`}</h3>
+            <button type="button" onClick={() => setShow(true)}>
+              Finalizar Compra!
+            </button>
           </div>
         </div>
       </div>

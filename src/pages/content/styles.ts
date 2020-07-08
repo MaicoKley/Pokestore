@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+interface ModalProps {
+  visible: boolean;
+}
 
 export const Pokemon = styled.div`
   padding-left: 20px;
@@ -80,5 +84,30 @@ export const Chose = styled.button`
     border-left: 0;
     margin-left: -10px;
     margin-top: -20px;
+  }
+`;
+
+export const Modal = styled.div<ModalProps>`
+  background: #5eebd1;
+  align-items: center;
+  border: 5px solid green;
+  border-radius: 5px;
+  height: 100px;
+  width: 200px;
+  position: absolute;
+  z-index: 9999;
+  left:50%;
+  top:50%;
+  margin-left:-110px;
+  margin-top:-40px;
+  display: none;
+
+  ${(props) => props.visible
+    && css`
+        display: block;
+      `}
+
+  p {
+    max-width: 200px;
   }
 `;
